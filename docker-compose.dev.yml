@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Frontend development server
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: builder
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    command: npm run dev
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
+  # Backend Go server
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "1935:1935"  # RTMP
+    volumes:
+      - ./data:/data
+    environment:
+      - NANIT_HTTP_PORT=8080
+      - NANIT_RTMP_ADDR=192.168.1.100:1935
+      - NANIT_SESSION_FILE=/data/session.json
+      - NANIT_LOG_LEVEL=debug
+    restart: unless-stopped
+
+  # Full stack production build
+  production:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "1935:1935"
+    volumes:
+      - ./data:/data
+    environment:
+      - NANIT_HTTP_PORT=8080
+      - NANIT_RTMP_ADDR=192.168.1.100:1935
+      - NANIT_SESSION_FILE=/data/session.json
+      - NANIT_LOG_LEVEL=info
+    restart: unless-stopped
+    profiles:
+      - production

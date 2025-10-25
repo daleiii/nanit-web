@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .sensor-card {
+    @apply bg-nanit-gray-50 p-5 rounded-lg border-l-4 transition-colors duration-200 hover:bg-nanit-gray-100;
+  }
+
+  .sensor-card.temperature {
+    @apply border-l-orange-500;
+  }
+
+  .sensor-card.humidity {
+    @apply border-l-teal-500;
+  }
+
+  .sensor-card.night-mode {
+    @apply border-l-purple-500;
+  }
+
+  /* Motion/sound sensor cards - disabled for now
+  .sensor-card.motion {
+    @apply border-l-pink-500;
+  }
+
+  .sensor-card.sound {
+    @apply border-l-yellow-500;
+  }
+  */
+
+  .sensor-card.night-light {
+    @apply border-l-cyan-500;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+
+  .btn-secondary {
+    @apply bg-nanit-gray-200 text-nanit-gray-700 hover:bg-nanit-gray-300 focus:ring-nanit-gray-500;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+
+  .btn-success {
+    @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-dot.online {
+    @apply bg-green-500;
+  }
+
+  .status-dot.offline {
+    @apply bg-red-500;
+  }
+
+  .status-dot.connecting {
+    @apply bg-yellow-500 animate-pulse;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-nanit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+}

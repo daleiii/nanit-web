@@ -1,0 +1,11 @@
+.env
+data
+.DS_Store
+docker-compose.yml
+
+# Claude Code configuration
+.claude/
+CLAUDE.md
+
+# Claude Code configuration
+# (GitHub workflows are now included for Docker builds)
